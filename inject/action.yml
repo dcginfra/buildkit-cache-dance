@@ -29,7 +29,7 @@ runs:
       id: mounts
       with:
         script: |
-          const mountIds = '${{ inputs.mounts }}'.split(/[\r\n,]+/);
+          const mountIds = `${{ inputs.mounts }}`.split(/[\r\n,]+/);
           
           const cacheMountArgs = mountIds.map((mount) => (
             `--mount=type=cache,sharing=shared,id=${mount},target=/cache-mounts/${mount} \`
