@@ -55,7 +55,8 @@ runs:
         COPY buildstamp buildstamp
         RUN ${{ steps.mounts.outputs.cacheMountArgs }} <<EOT
             echo '${{ steps.mounts.outputs.s5commands }}' | /s5cmd --stat --log error run && \
-            chmod 777 -R /cache-mounts || true
+            chmod 777 -R /cache-mounts || true && \
+            tree -D -L 4 --timefmt '%Y-%m-%d %H:%M:%S' /cache-mounts || true
         EOT
         EOF
 
