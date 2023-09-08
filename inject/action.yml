@@ -52,6 +52,7 @@ runs:
       run: |
         docker build ${{ inputs.cache-source }} --file - <<EOF
         FROM peakcom/s5cmd:v2.1.0
+        RUN apk add tree
         COPY buildstamp buildstamp
         RUN ${{ steps.mounts.outputs.cacheMountArgs }} <<EOT
             echo '${{ steps.mounts.outputs.s5commands }}' | /s5cmd --stat --log error run && \
