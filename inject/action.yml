@@ -56,7 +56,7 @@ runs:
         RUN ${{ steps.mounts.outputs.cacheMountArgs }} <<EOT
             echo '${{ steps.mounts.outputs.s5commands }}' | /s5cmd --stat --log error run && \
             chmod 777 -R /cache-mounts || true && \
-            find /cache-mounts -exec touch -d `date +%Y.%m.%d-%H:%M:%S -d@"$((\`date +%s\`-2))"` {} +
+            find /cache-mounts -exec touch -d `date +%Y.%m.%d-%H:%M:%S -d@"$((\`date +%s\`-172800))"` {} +
         EOT
         EOF
 
